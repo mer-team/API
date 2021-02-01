@@ -1,0 +1,38 @@
+name: API Node.js CI/CD
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [12.x, 14.x]
+
+    steps:    
+    - name: Setup MySQL Image
+      run: docker run -d -e MYSQL_ROOT_PASSWORD=teste -e MYSQL_DATABASE=mer -p 3306:3306 merteam/database:latest
+
+    - name: Checkout API Project
+      uses: actions/checkout@v2
+
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+
+    - name: Install dependencies
+      run: npm install --also=dev
+      working-directory: src
+    #- name: Runnning build
+    #  run: npm run build --if-present
+    - name: Running tests
+      run: npm test
+      working-directory: src
+      env:
+        CI: true
+
+    - name: Dump docker logs on failure
+      if: failure()
+      uses: jwalton/gh-docker-logs@v1
