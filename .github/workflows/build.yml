@@ -30,6 +30,11 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
+      env:
+        DB_USERNAME: root
+        DB_PASSWORD: teste
+        DB_DATABASE: mer
+        DB_HOST: localhost
 
     - name: Install dependencies
       run: npm install --also=dev
