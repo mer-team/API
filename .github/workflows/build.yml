@@ -25,10 +25,7 @@ jobs:
         mysql version: '5'
         mysql database: 'mer'
         mysql root password: 'teste'
-    
-    #- name: Build Local API Dev Docker Image
-    #  run: docker build -t apidev:latest -f dev.Dockerfile .
-    
+
     - name: Checkout API Project
       uses: actions/checkout@v2
 
