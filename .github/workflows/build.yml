@@ -37,6 +37,11 @@ jobs:
     - name: Database Migration
       run: npx sequelize-cli db:migrate
       working-directory: src
+      env:
+        DB_USERNAME: root
+        DB_PASSWORD: teste
+        DB_DATABASE: mer
+        DB_HOST: localhost
 
     - name: Database Seed
       run: npx sequelize-cli db:seed:all
