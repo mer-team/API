@@ -36,9 +36,11 @@ jobs:
 
     - name: Database Migration
       run: npx sequelize-cli db:migrate
+      working-directory: src
 
     - name: Database Seed
       run: npx sequelize-cli db:seed:all
+      working-directory: src
 
     #- name: Runnning build
     #  run: npm run build --if-present
