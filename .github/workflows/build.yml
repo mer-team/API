@@ -10,6 +10,12 @@ jobs:
       matrix:
         node-version: [12.x, 14.x]
 
+    env:
+      DB_USERNAME: root
+      DB_PASSWORD: teste
+      DB_DATABASE: mer
+      DB_HOST: localhost
+
     steps:    
     - name: Setup MySQL Image
       uses: mirromutth/mysql-action@v1.1
@@ -30,11 +36,6 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-      env:
-        DB_USERNAME: root
-        DB_PASSWORD: teste
-        DB_DATABASE: mer
-        DB_HOST: localhost
 
     - name: Install dependencies
       run: npm install --also=dev
@@ -43,11 +44,6 @@ jobs:
     - name: Database Migration
       run: npx sequelize-cli db:migrate
       working-directory: src
-      env:
-        DB_USERNAME: root
-        DB_PASSWORD: teste
-        DB_DATABASE: mer
-        DB_HOST: localhost
 
     - name: Database Seed
       run: npx sequelize-cli db:seed:all
