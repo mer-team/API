@@ -1,11 +1,6 @@
 var feedbackService = require('./feedbackService');
-var fetchVideoInfo = require('youtube-info');
 const { check, validationResult } = require('express-validator/check');
 var jwt = require('jsonwebtoken');
-var amqp = require('amqplib/callback_api')
-
-const ytdl = require('ytdl-core');
-
 
 exports.newFeedback = async (req, res) => {
 

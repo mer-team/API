@@ -1,11 +1,6 @@
 var listaReproducaoService = require('./listaReproducaoService');
-var fetchVideoInfo = require('youtube-info');
 const { check, validationResult } = require('express-validator/check');
 var jwt = require('jsonwebtoken');
-var amqp = require('amqplib/callback_api')
-
-const ytdl = require('ytdl-core');
-
 
 exports.createList = async (req, res) => {
 

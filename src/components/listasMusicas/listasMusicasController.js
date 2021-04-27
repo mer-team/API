@@ -1,11 +1,6 @@
 var listaMusicasService = require('./listasMusicasService');
-var fetchVideoInfo = require('youtube-info');
 const { check, validationResult } = require('express-validator/check');
 var jwt = require('jsonwebtoken');
-var amqp = require('amqplib/callback_api')
-
-const ytdl = require('ytdl-core');
-
 
 exports.addMusic = async (req, res) => {
     let serverResponse = { status: "Musica não adicionada à lista", response: {} }

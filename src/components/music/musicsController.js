@@ -1,14 +1,11 @@
-
 var musicsService = require('./musicsService');
-// var fetchVideoInfo = require('youtube-info');
 const { check, validationResult } = require('express-validator/check');
 var jwt = require('jsonwebtoken');
 var amqp = require('amqplib/callback_api')
-
-const youtubedl = require('youtube-dl')
-
 const ytdl = require('ytdl-core');
-
+const mq_host = process.env.MQ_HOST || 'localhost',
+      mq_user = process.env.MQ_USER || 'guest',
+      mq_pass = process.env.MQ_PASS || 'guest';
 
 exports.uploadVideo = async (req, res) => {
     let serverResponse = { status: "Not Uploaded", response: {} }
@@ -53,7 +50,7 @@ exports.uploadVideo = async (req, res) => {
 
 
 
-            amqp.connect('amqp://merUser:passwordMER@rabbit', function (err, conn) {
+            amqp.connect(`amqp://${mq_user}:${mq_pass}@${mq_host}/`, function (err, conn) {
                 conn.createChannel(function (err, ch) {
                     var q = 'musicExtraction';
                     //console.log("Conn = " + conn);
