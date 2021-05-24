@@ -31,11 +31,10 @@ jobs:
     - name: Build Local API Docker Image
       run: docker build -t api:latest .
 
-    - name: Container Image Scan
-      uses: azure/container-scan@v0
-      with:
-        severity-threshold: CRITICAL
-        image-name: api:latest
+    #- name: Container Image Scan
+    #  uses: azure/container-scan@v0
+    #  with:
+    #    image-name: api:latest
 
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
