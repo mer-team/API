@@ -17,17 +17,24 @@ jobs:
       DB_HOST: localhost
 
     steps:    
-    - name: Setup MySQL Image
-      uses: mirromutth/mysql-action@v1.1
+    - name: Setup PostgreSQL Image
+      uses: harmon758/postgresql-action@v1
       with:
-        character set server: 'utf8'
-        collation server: 'utf8_general_ci'
-        mysql version: '5'
-        mysql database: 'mer'
-        mysql root password: 'teste'
+        postgresql version: 13-alpine
+        postgresql db: $DB_DATABASE
+        postgresql user: $DB_USERNAME
+        postgresql password: $DB_PASSWORD
 
     - name: Checkout API Project
       uses: actions/checkout@v2
+
+    - name: Build Local API Docker Image
+      run: docker build -t api:latest .
+
+    - name: Container Image Scan
+      uses: azure/container-scan@v0
+      with:
+        image-name: api:latest
 
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
