@@ -34,6 +34,7 @@ jobs:
     - name: Container Image Scan
       uses: azure/container-scan@v0
       with:
+        severity-threshold: CRITICAL
         image-name: api:latest
 
     - name: Use Node.js ${{ matrix.node-version }}
