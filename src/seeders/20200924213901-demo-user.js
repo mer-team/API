@@ -6,7 +6,7 @@ const { v4: uuidv4 } = require('uuid');
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     return queryInterface.bulkInsert('Users', [{
-      userId: uuidv4(),
+      userID: uuidv4(),
       email: "admin@mail.pt",
       username: "admin",
       hashPassword: bcrypt.hashSync("123Qwe..", 8),
