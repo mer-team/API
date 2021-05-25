@@ -4,20 +4,20 @@
     "password": "teste",
     "database": "mer",
     "host":"db",
-    "dialect": "mysql"
+    "dialect": "postgres"
   },
   "test": {
     "username": "root",
     "password": "teste",
     "database": "mer",
     "host": "localhost",
-    "dialect": "mysql"
+    "dialect": "postgres"
   },
   "production": {
     "username": "root",
     "password": "teste",
     "database": "database_production",
     "host": "db",
-    "dialect": "mysql"
+    "dialect": "postgres"
   }
 }
